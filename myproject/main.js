@@ -20,18 +20,23 @@ camera.position.setZ(60);
 
 renderer.render(scene, camera);
 
-const geometry = new THREE.TorusGeometry(19,3,16,100);
-const material = new THREE.MeshStandardMaterial( { color: 0xFF6347});
-const torus = new THREE.Mesh(geometry,material);
 
-scene.add(torus)
+
+const geometry = new THREE.CylinderGeometry( 10, 10, 60, 10 );
+const material = new THREE.MeshStandardMaterial( {color: 0x807689} );
+const cylinder = new THREE.Mesh( geometry, material );
+cylinder.position.set(50,0,0)
+cylinder.rotation.x = 0.5;
+scene.add( cylinder );
+
+
 
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(20,20,20);
 scene.add(pointLight);
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(ambientLight);
+//const ambientLight = new THREE.AmbientLight(0xffffff);
+//scene.add(ambientLight);
 
 const lightHelper = new THREE.PointLightHelper(pointLight);
 scene.add(lightHelper);
@@ -44,7 +49,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 
 
-const spaceTexture = new THREE.TextureLoader().load('media/blackhole.jpeg');
+const spaceTexture = new THREE.TextureLoader().load('media/mars.jpg');
 scene.background = spaceTexture;
 
 
@@ -54,9 +59,9 @@ scene.background = spaceTexture;
 function animate(){
 requestAnimationFrame(animate);
 
-torus.rotation.x += 0.01;
-torus.rotation.y += 0.005;
-torus.rotation.z += 0.01;
+//cylinder.rotation.x += 0.01;
+cylinder.rotation.y += 0.005;
+//cylinder.rotation.z += 0.01;
 
 
 controls.update();
